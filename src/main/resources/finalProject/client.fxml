@@ -15,7 +15,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<AnchorPane styleClass="bg" fx:controller="csci2020u.final_project.Controller" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane styleClass="bg" fx:controller="csci2020u.finalProject.Controller" xmlns:fx="http://javafx.com/fxml">
     <MenuBar fx:id="menuBar" styleClass="Menu" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <Menu text="Menu">
             <MenuItem text="Help" onAction="#helpLabel"/>
