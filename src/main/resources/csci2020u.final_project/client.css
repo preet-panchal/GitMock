@@ -1,0 +1,36 @@
+bg{
+    -fx-background-color: linear-gradient(LightSlateGray, GhostWhite);
+
+}
+
+.Download{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
+}
+
+.Upload{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
+}
+
+.Client{
+-fx-background-color:#F8F8FF;
+}
+
+.Hide{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
+}
+
+.Menu{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
+}
