@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.ListView?>
+
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<AnchorPane styleClass="bg" fx:controller="csci2020u.finalProject.Controller" xmlns:fx="http://javafx.com/fxml">
+    <MenuBar fx:id="menuBar" styleClass="Menu" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <Menu text="Menu">
+            <MenuItem text="Help" onAction="#helpLabel"/>
+            <MenuItem text="Exit" onAction="#exitProgram"/>
+        </Menu>
+    </MenuBar>
+
+
+    <Button fx:id="Download" styleClass="Download" layoutX="393" onAction="#btnOnPressdownload"
+            prefHeight="26.0" prefWidth="100.0" text="Download"/>
+    <Button fx:id="Upload" styleClass="Upload" layoutX="500" onAction="#btnOnPressUpload" prefHeight="26.0"
+            prefWidth="100.0" text="Upload"/>
+    <Button fx:id="Update" styleClass="Upload" layoutX="285" onAction="#btnOnPressupdate" prefHeight="26.0"
+            prefWidth="100.0" text="Update"/>
+
+    <Label fx:id="text2" text="Client" layoutX="10" layoutY="45"/>
+    <ListView fx:id="client" styleClass="Client" layoutY="80" prefHeight="300" prefWidth="275"/>
+    <Label fx:id="text1" text="Server" layoutX="310" layoutY="45"/>
+    <ListView fx:id="Server" layoutX="310" layoutY="80" prefHeight="300" prefWidth="275"/>
+    <Label fx:id="lblSystemMessage" layoutX="250" layoutY="500"/>
+    <Button fx:id="Hide" onAction="#hideLable" styleClass="Hide"/>
+
+
+</AnchorPane>
