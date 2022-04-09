@@ -22,23 +22,21 @@ public class Controller {
 
     public MenuBar menuBar;
     @FXML
-    private Button Download;
+    private Button Pull;
     @FXML
-    private Button Upload;
+    private Button Push;
     @FXML
-    private Button Update;
+    private Button Fetch;
     @FXML
-    private ListView<String> Client = new ListView<>();
+    private ListView<String> LocalRepo = new ListView<>();
     @FXML
-    private ListView<String> Server = new ListView<>();
+    private ListView<String> RemoteRepo = new ListView<>();
     @FXML
-    private Label lblSystemMessage = new Label();
+    private Label SystemMessage = new Label();
     @FXML
-    private Label text1 = new Label();
+    private Label LocalRepoLabel = new Label();
     @FXML
-    private Label text2 = new Label();
-    @FXML
-    private Button Hide;
+    private Label RemoteRepoLabel = new Label();
     @FXML
     private Parent root;
     private Scene scene;
@@ -55,8 +53,8 @@ public class Controller {
     private BufferedReader In = null;
 
     public void initialize() {
-        text1.setFont(new Font("Cambria", 25));
-        text2.setFont(new Font("Cambria", 25));
+        LocalRepoLabel.setFont(new Font("Verdana", 25));
+        RemoteRepoLabel.setFont(new Font("Verdana", 25));
         String DataFromServer = "";
         String message1= "";
         String message2= "";
@@ -96,7 +94,7 @@ public class Controller {
                 ClientFiles.add(file.getName());
             }
         }
-        lblSystemMessage.setText("""
+        SystemMessage.setText("""
                 Help Menu:
                 Push:
                  1.Choose folder you would like to push
@@ -107,8 +105,8 @@ public class Controller {
                 Fetch:
                  1.To update repos click fetch.""");
 
-        Server.itemsProperty().bind(ServerFileList);
-        Client.itemsProperty().bind(ClientFileList);
+        RemoteRepo.itemsProperty().bind(ServerFileList);
+        LocalRepo.itemsProperty().bind(ClientFileList);
         ClientFileList.set(FXCollections.observableArrayList(ClientFiles));
         ServerFileList.set(FXCollections.observableArrayList(ServerFiles));
 
@@ -116,42 +114,19 @@ public class Controller {
 
     @FXML
     public void helpLabel(ActionEvent event) throws IOException {
-        /*
-         * Makes Hide button visible
-         * And outputs help instruction
-         */
-        //Makes Hide button visible
-        /*
-        Hide.setVisible(true);
-        lblSystemMessage.setText(
-                "Help Menu:" +
-                        "\nUploaded:" +
-                        "\n 1.choose folder you would like to upload" +
-                        "\n  from client-side then press Upload"+
-                        "\nDownload:" +
-                        "\n 1.choose folder you would like to download" +
-                        "\n  from server-side Then press Download"
-        );
-        //Creates Hide button
-        Hide.setText("Hide Text");
-        Hide.setLayoutX(390);
-        Hide.setLayoutY(500);
-         */
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("help.fxml")));
         stage = (Stage)menuBar.getScene().getWindow();
         scene = new Scene(root);
         stage.setTitle("Help");
         stage.setScene(scene);
+        scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
         stage.show();
     }
     public void onBackButtonClick(ActionEvent event) throws IOException {
         /*
          * Hides The Label and Hide button ones run
          */
-        //lblSystemMessage.setText("");
-        //hides Hide Button
-        //Hide.setVisible(false);
-        initialize();
+        //initialize();
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("client.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root, 600, 700);
@@ -169,7 +144,7 @@ public class Controller {
      * once the server gets the command it starts sending the contents of the file and the function receives
      * it and creates a the file in The client file with the data gotten from the server.
      * */
-    public void btnOnPressdownload(ActionEvent actionEvent) throws IOException {
+    public void btnOnPressPull(ActionEvent actionEvent) throws IOException {
         Socket clientSocket = null;
         PrintWriter OUT = null;
         String DataFromServer;
@@ -179,7 +154,7 @@ public class Controller {
         try {
             clientSocket = new Socket("localhost",8081);
             OUT = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
-            OUT.println("DownLoad"+" "+Server.getSelectionModel().getSelectedItems().get(0));
+            OUT.println("DownLoad"+" "+ RemoteRepo.getSelectionModel().getSelectedItems().get(0));
             In =  new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             message1 = In.readLine();
             message2 = In.readLine();
@@ -193,7 +168,7 @@ public class Controller {
             //data from server is read and the stored in DataFromServer
             DataFromServer = In.readLine();
             //path to were the new file is going to be created
-            String path = "ClientFiles/" + Server.getSelectionModel().getSelectedItems().get(0);
+            String path = "ClientFiles/" + RemoteRepo.getSelectionModel().getSelectedItems().get(0);
             File IncomingFile= new File(path);
             //looks to see if the file already exists
             if(!IncomingFile.exists()) {
@@ -223,7 +198,7 @@ public class Controller {
      * and then sends a command to upload first the File name
      * and then after it sends the content of the file
      * */
-    public void btnOnPressUpload(ActionEvent actionEvent) {
+    public void btnOnPressPush(ActionEvent actionEvent) {
         Socket clientSocket = null;
         PrintWriter out = null;
         try{
@@ -231,13 +206,13 @@ public class Controller {
             clientSocket = new Socket("localhost",8081);
             out = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
             //sends upload command with the file name as second argument
-            out.println("Upload"+" "+ Client.getSelectionModel().getSelectedItems().get(0));
+            out.println("Upload"+" "+ LocalRepo.getSelectionModel().getSelectedItems().get(0));
             //takes client_folder and makes it a list of files;
             File[] listOfFilesClient = Client_folder.listFiles();
             //loops until the file selected is found
             assert listOfFilesClient != null;
             for (File file : listOfFilesClient) {
-                if (file.getName().equals(Client.getSelectionModel().getSelectedItems().get(0)) ) {
+                if (file.getName().equals(LocalRepo.getSelectionModel().getSelectedItems().get(0)) ) {
                     //this is where the file content is sent through the socket
                     File FileReading = new File(String.valueOf(file.getAbsoluteFile()));
                     Scanner sc = new Scanner(file);
@@ -302,23 +277,22 @@ public class Controller {
 
         // takes the file folder and makes it a list that we can go through
         File[] listOfFilesClient = Client_folder.listFiles();
+        assert listOfFilesClient != null;
         for (File file : listOfFilesClient) {
             if (file.isFile()) {
                 ClientFiles.add(file.getName());
             }
         }
 
-
-
-        Server.itemsProperty().bind(ServerFileList);
-        Client.itemsProperty().bind(ClientFileList);
+        RemoteRepo.itemsProperty().bind(ServerFileList);
+        LocalRepo.itemsProperty().bind(ClientFileList);
         ClientFileList.set(FXCollections.observableArrayList(ClientFiles));
         ServerFileList.set(FXCollections.observableArrayList(ServerFiles));
     }
 
     /*function that when pressed calls the ListViewUpdate
      * to update the ListView on the UI to the most uptodate version*/
-    public void btnOnPressupdate(ActionEvent actionEvent) {
+    public void btnOnPressFetch(ActionEvent actionEvent) {
         ListViewUpdate();
     }
 }

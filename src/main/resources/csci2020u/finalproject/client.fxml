@@ -24,17 +24,17 @@
     </MenuBar>
 
 
-    <Button fx:id="Download" styleClass="Download" layoutX="393" onAction="#btnOnPressdownload"
-            prefHeight="26.0" prefWidth="100.0" text="Download"/>
-    <Button fx:id="Upload" styleClass="Upload" layoutX="500" onAction="#btnOnPressUpload" prefHeight="26.0"
-            prefWidth="100.0" text="Upload"/>
-    <Button fx:id="Update" styleClass="Upload" layoutX="285" onAction="#btnOnPressupdate" prefHeight="26.0"
-            prefWidth="100.0" text="Update"/>
+    <Button fx:id="Pull" styleClass="Pull" layoutX="393" onAction="#btnOnPressPull"
+            prefHeight="26.0" prefWidth="100.0" text="Pull"/>
+    <Button fx:id="Push" styleClass="Push" layoutX="500" onAction="#btnOnPressPush" prefHeight="26.0"
+            prefWidth="100.0" text="Push"/>
+    <Button fx:id="Fetch" styleClass="Push" layoutX="285" onAction="#btnOnPressFetch" prefHeight="26.0"
+            prefWidth="100.0" text="Fetch"/>
 
-    <Label fx:id="text2" text="Client" layoutX="10" layoutY="45"/>
-    <ListView fx:id="Client" styleClass="Client" layoutY="80" prefHeight="300" prefWidth="275"/>
-    <Label fx:id="text1" text="Server" layoutX="310" layoutY="45"/>
-    <ListView fx:id="Server" layoutX="310" layoutY="80" prefHeight="300" prefWidth="275"/>
+    <Label fx:id="LocalRepoLabel" text="LocalRepo" layoutX="10" layoutY="45"/>
+    <ListView fx:id="LocalRepo" styleClass="LocalRepo" layoutY="80" prefHeight="300" prefWidth="275"/>
+    <Label fx:id="RemoteRepoLabel" text="RemoteRepo" layoutX="310" layoutY="45"/>
+    <ListView fx:id="RemoteRepo" layoutX="310" layoutY="80" prefHeight="300" prefWidth="275"/>
 
 
 </AnchorPane>
