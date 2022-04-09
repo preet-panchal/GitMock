@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:controller="csci2020u.finalproject.Controller" xmlns:fx="http://javafx.com/fxml" alignment="center"
+          prefWidth="600" prefHeight="300" vgap="25">
+
+    <!-- Style for the padding -->
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <!-- Label for the ID, Name, Email, Description, and a button back top main -->
+    <Label fx:id="lblSystemMessage" GridPane.columnIndex="0" GridPane.rowIndex="0" layoutX="250" layoutY="500" text=" "/>
+    <Button fx:id="Hide" text="Back to Main" onAction="#onBackButtonClick" styleClass="Hide" maxWidth="Infinity" prefHeight="30.0"
+            GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+</GridPane>

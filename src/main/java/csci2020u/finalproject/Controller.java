@@ -1,31 +1,22 @@
 package csci2020u.finalproject;
 
-import javafx.beans.Observable;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.paint.Color;
+import javafx.scene.control.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Controller {
 
@@ -37,17 +28,21 @@ public class Controller {
     @FXML
     private Button Update;
     @FXML
-    private ListView client;
+    private ListView<String> Client = new ListView<>();
     @FXML
-    private ListView Server;
+    private ListView<String> Server = new ListView<>();
     @FXML
-    private javafx.scene.control.Label lblSystemMessage;
+    private Label lblSystemMessage = new Label();
     @FXML
-    private javafx.scene.control.Label text1;
+    private Label text1 = new Label();
     @FXML
-    private javafx.scene.control.Label text2;
+    private Label text2 = new Label();
     @FXML
-    private javafx.scene.control.Button Hide;
+    private Button Hide;
+    @FXML
+    private Parent root;
+    private Scene scene;
+    private Stage stage;
 
 
 
@@ -101,19 +96,32 @@ public class Controller {
                 ClientFiles.add(file.getName());
             }
         }
+        lblSystemMessage.setText("""
+                Help Menu:
+                Push:
+                 1.Choose folder you would like to push
+                  from local-repo then press push.
+                Pull:
+                 1.Choose folder you would like to pull
+                  from remote-repo then press pull.
+                Fetch:
+                 1.To update repos click fetch.""");
 
         Server.itemsProperty().bind(ServerFileList);
-        client.itemsProperty().bind(ClientFileList);
+        Client.itemsProperty().bind(ClientFileList);
         ClientFileList.set(FXCollections.observableArrayList(ClientFiles));
         ServerFileList.set(FXCollections.observableArrayList(ServerFiles));
+
     }
 
-    public void helpLabel(ActionEvent event){
+    @FXML
+    public void helpLabel(ActionEvent event) throws IOException {
         /*
          * Makes Hide button visible
          * And outputs help instruction
          */
         //Makes Hide button visible
+        /*
         Hide.setVisible(true);
         lblSystemMessage.setText(
                 "Help Menu:" +
@@ -128,14 +136,29 @@ public class Controller {
         Hide.setText("Hide Text");
         Hide.setLayoutX(390);
         Hide.setLayoutY(500);
+         */
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("help.fxml")));
+        stage = (Stage)menuBar.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setTitle("Help");
+        stage.setScene(scene);
+        stage.show();
     }
-    public void hideLable(ActionEvent event){
+    public void onBackButtonClick(ActionEvent event) throws IOException {
         /*
          * Hides The Label and Hide button ones run
          */
-        lblSystemMessage.setText("");
+        //lblSystemMessage.setText("");
         //hides Hide Button
-        Hide.setVisible(false);
+        //Hide.setVisible(false);
+        initialize();
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("client.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root, 600, 700);
+        stage.setTitle("Mock Github Desktop");
+        stage.setScene(scene);
+        scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
+        stage.show();
     }
     /*
      * btnOnPressdownload is used to get the file from the server and download it to the ClientFolder
@@ -208,13 +231,13 @@ public class Controller {
             clientSocket = new Socket("localhost",8081);
             out = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
             //sends upload command with the file name as second argument
-            out.println("Upload"+" "+client.getSelectionModel().getSelectedItems().get(0));
+            out.println("Upload"+" "+ Client.getSelectionModel().getSelectedItems().get(0));
             //takes client_folder and makes it a list of files;
             File[] listOfFilesClient = Client_folder.listFiles();
             //loops until the file selected is found
             assert listOfFilesClient != null;
             for (File file : listOfFilesClient) {
-                if (file.getName().equals(client.getSelectionModel().getSelectedItems().get(0)) ) {
+                if (file.getName().equals(Client.getSelectionModel().getSelectedItems().get(0)) ) {
                     //this is where the file content is sent through the socket
                     File FileReading = new File(String.valueOf(file.getAbsoluteFile()));
                     Scanner sc = new Scanner(file);
@@ -288,7 +311,7 @@ public class Controller {
 
 
         Server.itemsProperty().bind(ServerFileList);
-        client.itemsProperty().bind(ClientFileList);
+        Client.itemsProperty().bind(ClientFileList);
         ClientFileList.set(FXCollections.observableArrayList(ClientFiles));
         ServerFileList.set(FXCollections.observableArrayList(ServerFiles));
     }

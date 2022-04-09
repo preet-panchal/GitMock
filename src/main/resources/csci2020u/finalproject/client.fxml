@@ -32,11 +32,9 @@
             prefWidth="100.0" text="Update"/>
 
     <Label fx:id="text2" text="Client" layoutX="10" layoutY="45"/>
-    <ListView fx:id="client" styleClass="Client" layoutY="80" prefHeight="300" prefWidth="275"/>
+    <ListView fx:id="Client" styleClass="Client" layoutY="80" prefHeight="300" prefWidth="275"/>
     <Label fx:id="text1" text="Server" layoutX="310" layoutY="45"/>
     <ListView fx:id="Server" layoutX="310" layoutY="80" prefHeight="300" prefWidth="275"/>
-    <Label fx:id="lblSystemMessage" layoutX="250" layoutY="500"/>
-    <Button fx:id="Hide" onAction="#hideLable" styleClass="Hide"/>
 
 
 </AnchorPane>
