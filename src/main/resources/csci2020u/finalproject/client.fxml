@@ -18,8 +18,8 @@
 <AnchorPane styleClass="bg" fx:controller="csci2020u.finalproject.Controller" style="-fx-background-color: #454545;" xmlns:fx="http://javafx.com/fxml">
     <MenuBar fx:id="menuBar" styleClass="Menu" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <Menu text="Menu">
-            <MenuItem text="Help" onAction="#helpLabel"/>
-            <MenuItem text="Exit" onAction="#exitProgram"/>
+            <MenuItem text="Help" style="-fx-text-fill: black;" onAction="#helpLabel"/>
+            <MenuItem text="Exit" style="-fx-text-fill: black;" onAction="#exitProgram"/>
         </Menu>
     </MenuBar>
 
