@@ -148,7 +148,7 @@ public class Controller {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("client.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root, 600, 400);
-        stage.setTitle("Mock Github Desktop");
+        stage.setTitle("GitMock Desktop");
         stage.setScene(scene);
         scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
         stage.show();

@@ -17,7 +17,7 @@ public class Main extends Application {
         primaryStage.setTitle("GitMock Desktop");
         Scene scene = new Scene(root, 600, 450);
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image("file:GitHub-logo.png"));
+        primaryStage.getIcons().add(new Image("file:gitmock-logo.png"));
         scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
         primaryStage.show();
     }
