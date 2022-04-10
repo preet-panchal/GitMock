@@ -1,5 +1,5 @@
-bg{
-    -fx-background-color: Black;
+body {
+  background-color: lightblue;
 }
 
 .Pull{
@@ -17,7 +17,7 @@ bg{
 }
 
 .LocalRepo{
--fx-background-color:#F8F8FF;
+    -fx-background-color: white;
 }
 
 .Hide{
@@ -29,10 +29,5 @@ bg{
 
 .Menu{
     -fx-background-color: #F8F8FF;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
-}
-
-.Menu:hover {
-    -fx-background-color: Black;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }

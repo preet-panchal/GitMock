@@ -15,7 +15,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<AnchorPane styleClass="bg" fx:controller="csci2020u.finalproject.Controller" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane styleClass="bg" fx:controller="csci2020u.finalproject.Controller" style="-fx-background-color: #454545;" xmlns:fx="http://javafx.com/fxml">
     <MenuBar fx:id="menuBar" styleClass="Menu" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <Menu text="Menu">
             <MenuItem text="Help" onAction="#helpLabel"/>
@@ -31,10 +31,9 @@
     <Button fx:id="Fetch" styleClass="Push" layoutX="285" onAction="#btnOnPressFetch" prefHeight="26.0"
             prefWidth="100.0" text="Fetch"/>
 
-    <Label fx:id="LocalRepoLabel" text="LocalRepo" layoutX="10" layoutY="45"/>
-    <ListView fx:id="LocalRepo" styleClass="LocalRepo" layoutY="80" prefHeight="300" prefWidth="275"/>
-    <Label fx:id="RemoteRepoLabel" text="RemoteRepo" layoutX="310" layoutY="45"/>
-    <ListView fx:id="RemoteRepo" layoutX="310" layoutY="80" prefHeight="300" prefWidth="275"/>
-
+    <Label fx:id="LocalRepoLabel" text="LocalRepo" style="-fx-text-fill: white;" layoutX="15" layoutY="45"/>
+    <ListView fx:id="LocalRepo" styleClass="LocalRepo" layoutX="15" layoutY="80" prefHeight="200" prefWidth="275"/>
+    <Label fx:id="RemoteRepoLabel" text="RemoteRepo" style="-fx-text-fill: white;" layoutX="310" layoutY="45"/>
+    <ListView fx:id="RemoteRepo" layoutX="310" layoutY="80" prefHeight="200" prefWidth="275"/>
 
 </AnchorPane>
