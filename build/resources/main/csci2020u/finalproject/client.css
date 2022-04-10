@@ -1,36 +1,38 @@
 bg{
-    -fx-background-color: linear-gradient(LightSlateGray, GhostWhite);
-
+    -fx-background-color: Black;
 }
 
-.Download{
+.Pull{
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-background-color: linear-gradient(Purple,Black);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
-.Upload{
+.Push{
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-background-color: linear-gradient(Purple,Black);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
-.Client{
+.LocalRepo{
 -fx-background-color:#F8F8FF;
 }
 
 .Hide{
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-background-color: linear-gradient(Purple,Black);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
 .Menu{
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-background-color: linear-gradient(Silver,SlateGrey);
+    -fx-background-color: #F8F8FF;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
+}
+
+.Menu:hover {
+    -fx-background-color: Black;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }

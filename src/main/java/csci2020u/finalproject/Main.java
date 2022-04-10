@@ -14,8 +14,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("client.fxml")));
-        primaryStage.setTitle("Mock Github Desktop");
-        Scene scene = new Scene(root, 600, 700);
+        primaryStage.setTitle("GitMock Desktop");
+        Scene scene = new Scene(root, 600, 500);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("file:GitHub.png"));
         scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
