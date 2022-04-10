@@ -42,8 +42,6 @@ public class Controller {
     private Scene scene;
     private Stage stage;
 
-
-
     protected List<String> ClientFiles = new ArrayList<>();
     protected List<String> ServerFiles = new ArrayList<>();
     protected ListProperty<String> ClientFileList = new SimpleListProperty<>();
@@ -58,7 +56,6 @@ public class Controller {
         String DataFromServer = "";
         String message1= "";
         String message2= "";
-
 
         /*
          * creates new socket to get all the files
@@ -87,7 +84,7 @@ public class Controller {
 
         // takes the file folder and makes it a list that we can go through
         File[] listOfFilesClient = Client_folder.listFiles();
-        //goes througgh the folder if in the folder of the object is a file then adds it to the ClienFiles List
+        //goes through the folder if in the folder of the object is a file then adds it to the ClientFiles List
         assert listOfFilesClient != null;
         for (File file : listOfFilesClient) {
             if (file.isFile()) {
@@ -112,6 +109,15 @@ public class Controller {
 
     }
 
+    /*
+     * onBackButtonClick is used to navigate from 'Main' screen to 'Help' screen.
+     *
+     *@pram ActionEvent actionEvent
+     *
+     * when button is pressed, a new scene is created, which is the 'Help' scene.
+     * The stage is reset to the 'Help' screen
+     *
+     * */
     @FXML
     public void helpLabel(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("help.fxml")));
@@ -122,27 +128,36 @@ public class Controller {
         scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
         stage.show();
     }
+    /*
+     * onBackButtonClick is used to navigate from 'Help' screen to main screen.
+     *
+     *@pram ActionEvent actionEvent
+     *
+     * when button is pressed, a new scene is created, which is the main scene.
+     * The stage is reset to the main screen
+     *
+     * */
     public void onBackButtonClick(ActionEvent event) throws IOException {
         /*
-         * Hides The Label and Hide button ones run
+         * Hides The Label and Hide button once run
          */
         //initialize();
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("client.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 600, 700);
+        scene = new Scene(root, 600, 400);
         stage.setTitle("Mock Github Desktop");
         stage.setScene(scene);
         scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
         stage.show();
     }
     /*
-     * btnOnPressdownload is used to get the file from the server and download it to the ClientFolder
+     * btnOnPressPull is used to get the file from the server and download it to the ClientFolder
      *
      *@pram ActionEvent actionEvent
      * when button is pressed it creates a new client socket and new output stream
      * It sends a command to the server "Download" and the filename that we want to get
      * once the server gets the command it starts sending the contents of the file and the function receives
-     * it and creates a the file in The client file with the data gotten from the server.
+     * it and creates the file in The client file with the data gotten from the server.
      * */
     public void btnOnPressPull(ActionEvent actionEvent) throws IOException {
         Socket clientSocket = null;
@@ -167,7 +182,7 @@ public class Controller {
         try{
             //data from server is read and the stored in DataFromServer
             DataFromServer = In.readLine();
-            //path to were the new file is going to be created
+            //path to where the new file is going to be created
             String path = "ClientFiles/" + RemoteRepo.getSelectionModel().getSelectedItems().get(0);
             File IncomingFile= new File(path);
             //looks to see if the file already exists
@@ -192,9 +207,9 @@ public class Controller {
     }
 
     /*
-     * btnOnPressUpload is used to upload Files from the ClientFiles to The ServerFiles
+     * btnOnPressPush is used to upload Files from the ClientFiles to The ServerFiles
      *
-     * It first creates a socket that connects to port 8080
+     * It first creates a socket that connects to port 8081
      * and then sends a command to upload first the File name
      * and then after it sends the content of the file
      * */
@@ -241,10 +256,10 @@ public class Controller {
     }
 
     /*
-     * ListViewUpdate is used to update what is seen on the Listveiw when new files are put in the clientfile
+     * ListViewUpdate is used to update what is seen on the ListView when new files are put in the client file
      *
-     * It woks by first clearing the ArrayList ServerFiles and ClientFiles
-     * Then it grabs the new Data and enteres them in their respective ArrayList
+     * It works by first clearing the ArrayList ServerFiles and ClientFiles
+     * Then it grabs the new Data and enters them in their respective ArrayList
      * */
     public void ListViewUpdate() {
         ServerFiles.clear();
@@ -271,8 +286,8 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String[] FromeServer = DataFromServer.split(" ");
-        Collections.addAll(ServerFiles, FromeServer);
+        String[] FromServer = DataFromServer.split(" ");
+        Collections.addAll(ServerFiles, FromServer);
 
 
         // takes the file folder and makes it a list that we can go through
@@ -291,7 +306,7 @@ public class Controller {
     }
 
     /*function that when pressed calls the ListViewUpdate
-     * to update the ListView on the UI to the most uptodate version*/
+     * to update the ListView on the UI to the most up-to-date version*/
     public void btnOnPressFetch(ActionEvent actionEvent) {
         ListViewUpdate();
     }
