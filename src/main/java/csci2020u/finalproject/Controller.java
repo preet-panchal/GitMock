@@ -115,7 +115,7 @@ public class Controller {
     /*
      * onBackButtonClick is used to navigate from 'Main' screen to 'Help' screen.
      *
-     *@pram ActionEvent actionEvent
+     * @param ActionEvent actionEvent
      *
      * when button is pressed, a new scene is created, which is the 'Help' scene.
      * The stage is reset to the 'Help' screen
@@ -134,7 +134,7 @@ public class Controller {
     /*
      * onBackButtonClick is used to navigate from 'Help' screen to main screen.
      *
-     *@pram ActionEvent actionEvent
+     * @param ActionEvent actionEvent
      *
      * when button is pressed, a new scene is created, which is the main scene.
      * The stage is reset to the main screen
@@ -156,7 +156,7 @@ public class Controller {
     /*
      * btnOnPressPull is used to get the file from the server and download it to the ClientFolder
      *
-     *@pram ActionEvent actionEvent
+     * @param ActionEvent actionEvent
      * when button is pressed it creates a new client socket and new output stream
      * It sends a command to the server "Download" and the filename that we want to get
      * once the server gets the command it starts sending the contents of the file and the function receives
@@ -183,17 +183,17 @@ public class Controller {
         }
 
         try{
-            //data from server is read and the stored in DataFromServer
+            // data from server is read and the stored in DataFromServer
             DataFromServer = In.readLine();
-            //path to where the new file is going to be created
+            // path to where the new file is going to be created
             String path = "ClientFiles/" + RemoteRepo.getSelectionModel().getSelectedItems().get(0);
             File IncomingFile= new File(path);
-            //looks to see if the file already exists
+            // looks to see if the file already exists
             if(!IncomingFile.exists()) {
                 IncomingFile.createNewFile();
             }
             FileWriter fw=new FileWriter(path);
-            //writes to new file
+            // writes to new file
             String [] Sentences =DataFromServer.split(" ");
             for(String Sentence:Sentences){
                 fw.write(Sentence+" ");
@@ -203,9 +203,9 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //closes the socket
+        // closes the socket
         clientSocket.close();
-        //updates the list
+        // updates the list
         ListViewUpdate();
     }
 
@@ -220,18 +220,18 @@ public class Controller {
         Socket clientSocket = null;
         PrintWriter out = null;
         try{
-            //creates socket
+            // creates socket
             clientSocket = new Socket("localhost",8081);
             out = new PrintWriter(new BufferedOutputStream(clientSocket.getOutputStream()));
-            //sends upload command with the file name as second argument
+            // sends upload command with the file name as second argument
             out.println("Upload"+" "+ LocalRepo.getSelectionModel().getSelectedItems().get(0));
-            //takes client_folder and makes it a list of files;
+            // takes client_folder and makes it a list of files;
             File[] listOfFilesClient = Client_folder.listFiles();
-            //loops until the file selected is found
+            // loops until the file selected is found
             assert listOfFilesClient != null;
             for (File file : listOfFilesClient) {
                 if (file.getName().equals(LocalRepo.getSelectionModel().getSelectedItems().get(0)) ) {
-                    //this is where the file content is sent through the socket
+                    // this is where the file content is sent through the socket
                     File FileReading = new File(String.valueOf(file.getAbsoluteFile()));
                     Scanner sc = new Scanner(file);
                     StringBuilder FileSending = new StringBuilder(" ");
@@ -246,7 +246,7 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //updates the listView
+        // updates the listView
         ListViewUpdate();
     }
 
