@@ -2,37 +2,36 @@ body {
   background-color: lightblue;
 }
 
-.Pull{
+.Pull {
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(Purple,Black);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
-.Push{
+.Push {
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(Purple,Black);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
-.LocalRepo{
+.LocalRepo {
     -fx-background-color: white;
 }
 
-.Hide{
+.Hide {
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-color: linear-gradient(Purple,Black);
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
-.Menu{
+.Menu {
     -fx-background-color: #353536;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
 }
 
-.Menu .label
-{
+.Menu .label {
     -fx-text-fill: white;
 }

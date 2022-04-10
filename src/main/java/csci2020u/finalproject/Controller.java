@@ -84,7 +84,7 @@ public class Controller {
 
         // takes the file folder and makes it a list that we can go through
         File[] listOfFilesClient = Client_folder.listFiles();
-        //goes through the folder if in the folder of the object is a file then adds it to the ClientFiles List
+        // goes through the folder if in the folder of the object is a file then adds it to the ClientFiles List
         assert listOfFilesClient != null;
         for (File file : listOfFilesClient) {
             if (file.isFile()) {
@@ -92,15 +92,18 @@ public class Controller {
             }
         }
         SystemMessage.setText("""
-                Help Menu:
+                               GitMock HELP Menu
+                
                 Push:
-                 1.Choose folder you would like to push
+                  Choose folder you would like to push
                   from local-repo then press push.
+                  
                 Pull:
-                 1.Choose folder you would like to pull
+                  Choose folder you would like to pull
                   from remote-repo then press pull.
+                  
                 Fetch:
-                 1.To update repos click fetch.""");
+                  To update repos click fetch.""");
 
         RemoteRepo.itemsProperty().bind(ServerFileList);
         LocalRepo.itemsProperty().bind(ClientFileList);

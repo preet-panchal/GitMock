@@ -16,6 +16,7 @@ public class FileServer{
     public static int MAX_CLIENTS = 100;
 
     public FileServer() {
+        // setting up new server socket
         try {
             serverSocket = new ServerSocket(SERVER_PORT);
             System.out.println("---------------------------");
