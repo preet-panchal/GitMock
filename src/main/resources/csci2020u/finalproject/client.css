@@ -28,6 +28,11 @@ body {
 }
 
 .Menu{
-    -fx-background-color: #F8F8FF;
+    -fx-background-color: #353536;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 50, 0.0, 0, 1);
+}
+
+.Menu .label
+{
+    -fx-text-fill: white;
 }
