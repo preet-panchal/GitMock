@@ -59,7 +59,7 @@ public class Controller {
 
         /*
          * creates new socket to get all the files
-         * from the the server file to get all the filenames to show on the UI
+         * from the server file to get all the filenames to show on the UI
          * */
         try{
             Socket clientSocket = new Socket("localhost", 8081);
