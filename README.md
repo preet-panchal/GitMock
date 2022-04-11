@@ -5,11 +5,13 @@ Course Final Project <br>
 Faculty of Science, Ontario Tech University <br>
 April 14, 2022 <br>
 
-## Group Members:
-Preet Panchal (100707094) <br>
-Eihab Syed (100707448) <br>
-Nathaniel Tai (100662284) <br>
-Caleb Gladwin (100755915)
+## Project Group 13:
+| Group Member Name | Student ID | GitHub Username (GitHub URL)|
+| :------------------------:|:------------------------:|:--------------------------------------:|
+| Caleb Gladwin | 100755915 | [CGladwin](https://github.com/CGladwin) |
+| Preet Panchal | 100707094 | [preet-panchal](https://github.com/preet-panchal) |
+| Eihab Syed | 100707448 | [EihabSyed](https://github.com/EihabSyed) |
+| Nathaniel Tai | 100662284 | [NathanTai](https://github.com/NathanTai) |
 
 ## About GitMock:
 GitMock is a simple mock application of GitHub Desktop. In CSCI2020U, we
