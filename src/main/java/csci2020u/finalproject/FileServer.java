@@ -5,6 +5,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
+/**
+ * Function to manage the project server
+ */
 public class FileServer{
     protected Socket clientSocket = null;
     protected ServerSocket serverSocket = null;
@@ -15,8 +18,10 @@ public class FileServer{
     public static int SERVER_PORT = 8081;
     public static int MAX_CLIENTS = 100;
 
+    /**
+     * setting up new server socket
+     */
     public FileServer() {
-        // setting up new server socket
         try {
             serverSocket = new ServerSocket(SERVER_PORT);
             System.out.println("---------------------------");
@@ -36,6 +41,10 @@ public class FileServer{
         }
     }
 
+    /**
+     * Function to run the server
+     * @param args contains the supplied command-line arguments as an array of String objects
+     */
     public static void main(String[] args) {
         FileServer app = new FileServer();
     }

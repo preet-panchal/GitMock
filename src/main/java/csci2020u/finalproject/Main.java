@@ -9,8 +9,13 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class Main extends Application {
 
+public class Main extends Application {
+    /**
+     *
+     * @param primaryStage function to transition between stages
+     * @throws Exception if scene isn't loaded correctly
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("client.fxml")));
@@ -22,7 +27,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
+    /**
+     *
+     * @param args contains the supplied command-line arguments as an array of String objects.
+     */
     public static void main(String[] args) {
         launch(args);
     }

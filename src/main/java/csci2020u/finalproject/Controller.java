@@ -18,6 +18,9 @@ import java.io.*;
 import java.net.Socket;
 import java.util.*;
 
+/**
+ * Class to control the data in the model
+ */
 public class Controller {
 
     public MenuBar menuBar;
@@ -50,6 +53,9 @@ public class Controller {
     private PrintWriter Out = null;
     private BufferedReader In = null;
 
+    /**
+     * Called to initialize a controller after its root element has been completely processed.
+     */
     public void initialize() {
         LocalRepoLabel.setFont(new Font("Verdana", 25));
         RemoteRepoLabel.setFont(new Font("Verdana", 25));
@@ -121,6 +127,14 @@ public class Controller {
      * The stage is reset to the 'Help' screen
      *
      * */
+
+    /**
+     * changes to "Help" scene
+     * when button is pressed, a new scene is created, which is the main scene.
+     * The stage is reset to the main screen
+     * @param event An Event representing some type of action
+     * @throws IOException throws exception
+     */
     @FXML
     public void helpLabel(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("help.fxml")));
@@ -131,15 +145,12 @@ public class Controller {
         scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("client.css")).toExternalForm());
         stage.show();
     }
-    /*
+
+    /**
      * onBackButtonClick is used to navigate from 'Help' screen to main screen.
-     *
-     * @param ActionEvent actionEvent
-     *
-     * when button is pressed, a new scene is created, which is the main scene.
-     * The stage is reset to the main screen
-     *
-     * */
+     * @param event An Event representing some type of action
+     * @throws IOException throws exception
+     */
     public void onBackButtonClick(ActionEvent event) throws IOException {
         /*
          * Hides The Label and Hide button once run
@@ -154,14 +165,19 @@ public class Controller {
         stage.show();
     }
     /*
-     * btnOnPressPull is used to get the file from the server and download it to the ClientFolder
+
+     * */
+
+    /**
      *
-     * @param ActionEvent actionEvent
+     * @param actionEvent An Event representing some type of action
+     * @throws IOException throws exception
+     * btnOnPressPull is used to get the file from the server and download it to the ClientFolder
      * when button is pressed it creates a new client socket and new output stream
      * It sends a command to the server "Download" and the filename that we want to get
      * once the server gets the command it starts sending the contents of the file and the function receives
      * it and creates the file in The client file with the data gotten from the server.
-     * */
+     */
     public void btnOnPressPull(ActionEvent actionEvent) throws IOException {
         Socket clientSocket = null;
         PrintWriter OUT = null;
@@ -209,13 +225,13 @@ public class Controller {
         ListViewUpdate();
     }
 
-    /*
-     * btnOnPressPush is used to upload Files from the ClientFiles to The ServerFiles
-     *
-     * It first creates a socket that connects to port 8081
-     * and then sends a command to upload first the File name
-     * and then after it sends the content of the file
-     * */
+    /**
+     *    btnOnPressPush is used to upload Files from the ClientFiles to The ServerFiles
+     *     It first creates a socket that connects to port 8081
+     *     and then sends a command to upload first the File name
+     *     and then after it sends the content of the file
+     * @param actionEvent An Event representing some type of action
+     */
     public void btnOnPressPush(ActionEvent actionEvent) {
         Socket clientSocket = null;
         PrintWriter out = null;
@@ -250,11 +266,11 @@ public class Controller {
         ListViewUpdate();
     }
 
-
+    /**
+     * Function closes the system running
+     * @param event An Event representing some type of action
+     */
     public void exitProgram(ActionEvent event){
-        /*
-         * Function closes the system running
-         */
         System.exit(0);
     }
 
@@ -307,9 +323,11 @@ public class Controller {
         ClientFileList.set(FXCollections.observableArrayList(ClientFiles));
         ServerFileList.set(FXCollections.observableArrayList(ServerFiles));
     }
-
-    /*function that when pressed calls the ListViewUpdate
-     * to update the ListView on the UI to the most up-to-date version*/
+    /**
+     *function that when pressed calls the ListViewUpdate
+     *to update the ListView on the UI to the most up-to-date version
+     * @param actionEvent An Event representing some type of action
+     */
     public void btnOnPressFetch(ActionEvent actionEvent) {
         ListViewUpdate();
     }

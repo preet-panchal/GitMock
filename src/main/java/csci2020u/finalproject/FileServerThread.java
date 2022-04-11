@@ -4,12 +4,20 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+/**
+ *
+ */
 public class FileServerThread extends Thread{
     protected Socket socket = null;
     protected PrintWriter out = null;
     protected BufferedReader in = null;
     protected Vector messages = null;
 
+    /**
+     *
+     * @param socket an endpoint for communication between two machines.
+     * @param messages list of messages
+     */
     public FileServerThread(Socket socket, Vector messages) {
         super();
         this.socket = socket;
@@ -22,8 +30,10 @@ public class FileServerThread extends Thread{
         }
     }
 
+    /**
+     * initialize interaction
+     */
     public void run() {
-        // initialize interaction
         out.println("Connected to Mock Github Server");
         out.println("200 Ready For Chat");
 
@@ -38,6 +48,10 @@ public class FileServerThread extends Thread{
         }
     }
 
+    /**
+     *take in commands
+     * @return call to similar function that accepts args
+     */
     protected boolean processCommand() {
         String message = null;
         try {
@@ -59,12 +73,18 @@ public class FileServerThread extends Thread{
         return processCommand(command, args);
     }
 
+    /**
+     *
+     * @param  command variable to parse commands
+     * @param arguments variable for files
+     * @return false
+     */
     protected boolean processCommand(String command, String arguments) {
         if(command.equalsIgnoreCase("DownLoad")){
             /*
              *The client sends a request to download a file with the filename of the file that the client wants to delete
              * Once The server gets the request it goes through the Server_folder directory for the file the client requested
-             * Once it finds the file it reads the content and sends it to to the client
+             * Once it finds the file it reads the content and sends it to the client
              * */
             final File Server_folder = new File("ServerFiles");
             File[] listOfFilesServer = Server_folder.listFiles();
